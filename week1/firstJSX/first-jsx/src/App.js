@@ -4,7 +4,11 @@ import React from 'react';
 
 function App() {
   const todo = ['Learn React','Climb Mt. Everest','Run a Marathon','Feed the dogs']
-  const todoList = todo.map(todo => <li>{todo}</li>)
+  const todoList = todo.map(todo => 
+    <ul>
+      <li>{todo}</li>
+    </ul>
+  )
   
   return (
         <div>
