@@ -28,23 +28,48 @@ const UserForm = (props) => {
             <form onSubmit={ createUser }>
                 <div>
                     <label htmlFor='firstname'>First Name: </label> 
-                    <TextField id="outlined-basic" label="First Name" variant="outlined" value={firstname} onChange={ (e) => setFirstName(e.target.value) } />
+                    <input type="text" value={firstname} onChange={ (e) => setFirstName(e.target.value) } />
+                    {!firstname >= 0 && firstname.length < 2 ? (
+                        <p>First Name must be at least 2 characters!</p>
+                        ) : 
+                        ""
+                    }
                 </div>
                 <div>
                     <label htmlFor='lastname'>Last Name: </label> 
                     <input type="text" value={lastname} onChange={ (e) => setLasttName(e.target.value) } />
+                    {!lastname >= 0 && lastname.length < 2 ? (
+                        <p>Last Name must be at least 2 characters!</p>
+                        ) : 
+                        ""
+                    }
                 </div>
                 <div>
                     <label htmlFor='email'>Email Address: </label> 
                     <input type="text" value={email} onChange={ (e) => setEmail(e.target.value) } />
+                    {!email >= 0 && email.length < 10 ? (
+                        <p>Email must be at least 10 characters</p>
+                        ) : 
+                        ""
+                    }
                 </div>
                 <div>
                     <label htmlFor='password'>Password: </label>
                     <input type="password" value={password} onChange={ (e) => setPassword(e.target.value) } />
+                    {!password >= 0 && password.length < 8 ? (
+                        <p>Password must be at least 8 characters!</p>
+                        ) : 
+                        ""
+                    }
                 </div>
                 <div>
                     <label htmlFor='confirmpassword'>Confirm Password: </label>
                     <input type="password" value={confirmpassword} onChange={ (e) => setConfirmPassword(e.target.value) } />
+                    {confirmpassword != password ? (
+                        <p>Password must match!!</p>
+                        ) : 
+                        ""
+                    }
                 </div>
                 <div>
                     <h1>{firstname} {lastname}</h1>
