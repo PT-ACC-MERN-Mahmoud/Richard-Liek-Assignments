@@ -10,6 +10,7 @@ function App() {
   const [list, setList] = useState([]);
   return (
     <div className="App">
+      <h1>To-Do List!!</h1>
       <AddTodo list={list} setList={setList} />
       {list.map((task, i) => (
         <TodoList task={task} setList={setList} index={i} list={list}/>
