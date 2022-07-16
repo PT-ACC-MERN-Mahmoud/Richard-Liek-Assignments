@@ -31,6 +31,10 @@ const Pokemon = (props) => {
       </ul>
     </div>
   );
-}
+
+};
+
+
+
 
 export default Pokemon;
