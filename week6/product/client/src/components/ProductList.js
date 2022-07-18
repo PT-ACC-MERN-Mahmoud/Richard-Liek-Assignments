@@ -1,38 +1,42 @@
 import { useEffect, useState } from "react";
+import axios from "axios";
 import { Link } from "react-router-dom";
-import axios from 'axios';
-import DeleteButton from './DeleteButton'
+import Button from "@mui/material/Button"
 
-const ProductsList = () => {
+const ProductList = () => {
+    const [products, setProducts] = useState([]);
+    
+    useEffect(() => {
+        axios.get('http://localhost:8000/products')
+            .then(res => {
+                console.log('Got Something');
+                console.log(res);
+                setProducts(res.data.products);
+                console.log(products);
+            });
+    }, []);
 
-  const [products, setProducts] = useState([]);
+    const deleteProduct = (id) => {
+        axios.delete(`http://localhost:8000/products/${id}/delete`)
+            .then(res => {
+                console.log(res.data);
+                res.data.success ? setProducts(products.filter(prod => prod._id != id)) : 
+                console.log('Error Deleting Product');
+            })
+    }
 
-  useEffect(() => {
-    axios
-      .get("http://localhost:8000/products")
-      .then((res) => setProducts(res.data));
-  }, []);
+    return (
+        <ul className="card col-4">
+            {products.map(product => (
+                <div key={product._id} style={{justifyContent: 'space-between',
+                    margin: 10 }}>
+                    <Button variant="contained" color="success" component={Link} to={`/products/${product._id}`}>{product.title}</Button>
+                    <Button variant="contained" color="error" onClick={()=>deleteProduct(product._id)}>Delete</Button>
+                    <Button variant="contained" color="primary" component={Link} to={`/products/${product._id}/edit`}>Edit</Button>
+                </div>
+            ))}
+        </ul>
+    )
+}
 
-  const removeFromDom = productId => {
-      setProducts(products.filter(product => product._id !== productId))
-  }
-
-  return (
-    <div className="row mt-3">
-      <div className="col-lg-2 text-center mx-auto mt-3">
-        <h1>All Products: </h1>
-        {products.map((product) => (
-            <p className="h5" key={product._id}>
-              <Link to={`/products/${product._id}`}>{product.title}</Link>
-              <DeleteButton
-                productId={product._id}
-                successCallback={() => removeFromDom(product._id)}
-              />
-            </p>
-        ))}
-      </div>
-    </div>
-  );
-};
-
-export default ProductsList
+export default ProductList;

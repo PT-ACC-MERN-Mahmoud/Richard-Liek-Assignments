@@ -1,5 +1,6 @@
-import React, { useState } from "react";
-
+import { useState } from "react";
+import Button from "@mui/material/Button"
+import { Link } from "react-router-dom";
 const ProductForm = (props) => {
 
   const {initialTitle, initialPrice, initialDescription, onSubmitProp} = props;
@@ -50,7 +51,7 @@ const ProductForm = (props) => {
             />
           </p>
           <p className="text-center">
-            <button className="btn btn-primary">Submit</button>
+            <Button variant="contained">Submit</Button>
           </p>
         </form>
     </div>

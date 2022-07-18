@@ -43,6 +43,7 @@ const Main = () => {
         </div>
       </div>
       <hr/>
+      <ProductsList/>
     </div>
   );
 };
