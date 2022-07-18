@@ -1,8 +1,9 @@
 import './App.css';
 import { Routes, Route, BrowserRouter } from "react-router-dom";
 import Main from './components/Main';
-import ViewProduct from './components/ViewProduct'
+import ViewProduct from './components/ViewProduct';
 import UpdateProduct from './components/UpdateProduct';
+import ProductsList from './components/ProductList';
 import ProductForm from './components/ProductForm';
 
 function App() {
@@ -11,6 +12,7 @@ function App() {
       <BrowserRouter>
           <Routes>
               <Route exact path='/' element={<Main/>}/>
+              <Route path='/products' element={<ProductsList/>}/>
               <Route path="/products/:id" element={<ViewProduct/>} />
               <Route path="/products/:id/edit" element={<UpdateProduct/>}/>
           </Routes>

@@ -42,10 +42,7 @@ const Main = () => {
           />
         </div>
       </div>
-      <hr />
-      {loaded && (
-        <ProductsList products={products} removeFromDom={removeFromDom} />
-      )}
+      <hr/>
     </div>
   );
 };

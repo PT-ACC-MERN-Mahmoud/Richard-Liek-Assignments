@@ -1,20 +1,21 @@
 import React, {useEffect, useState} from 'react'
 import axios from 'axios';
-// import { Link, navigate } from "@reach/router";
 import DeleteButton from '../components/DeleteButton';
-import {Link, Navigate} from 'react-router-dom';
+import {Link, Navigate, useParams} from 'react-router-dom';
+
 
 
 const ViewProduct = (props) => {
 
-  const [product, setProduct] = useState({})
+  const [product, setProduct] = useState({});
+  const {id} = useParams();
 
   useEffect(() => {
     axios
-      .get("http://localhost:8000/products/" + props.id)
+      .get("http://localhost:8000/products/${id}")
       .then((res) => setProduct(res.data))
       .catch((err) => console.log(err));
-  }, [props.id]);
+  }, [id]);
 
   return (
     <div className="container mt-5 text-center">

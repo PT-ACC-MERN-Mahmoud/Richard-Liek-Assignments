@@ -1,7 +1,8 @@
+require('./config/mongoose.config')
 const express = require('express');
-const cors = require('cors');
 const app = express();
 const port = 8000;
+const cors = require('cors');
 
 app.use(express.json());
 app.use(cors({origin: 'http://localhost:3000'}));
